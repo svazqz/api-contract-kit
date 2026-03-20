@@ -2,7 +2,7 @@
   "name": "@svazqz/api-contract-kit",
   "private": false,
   "description": "A simple way to keep in sync Next api definitions and client types using zod",
-  "version": "0.1.5-alpha",
+  "version": "0.1.6-alpha",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/svazqz/api-contract-kit.git"
