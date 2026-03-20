@@ -1,0 +1,82 @@
+{
+  "name": "@svazqz/api-contract-kit",
+  "private": false,
+  "description": "A simple way to keep in sync Next api definitions and client types using zod",
+  "version": "0.1.5-alpha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svazqz/api-contract-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svazqz/api-contract-kit/issues"
+  },
+  "author": {
+    "name": "Sergio Vazquez",
+    "email": "alb.vazq+npm@gmail.com",
+    "url": "https://github.com/svazqz"
+  },
+  "exports": {
+    "./dist/api-contract-kit": {
+      "import": "./dist/api-contract-kit.es.js",
+      "require": "./dist/api-contract-kit.cjs.js",
+      "types": "./dist/api-contract-kit.d.ts"
+    },
+    "./dist/server": {
+      "import": "./dist/server.es.js",
+      "require": "./dist/server.cjs.js",
+      "types": "./dist/server.d.ts"
+    },
+    "./dist/client": {
+      "import": "./dist/client.es.js",
+      "require": "./dist/client.cjs.js",
+      "types": "./dist/client.d.ts"
+    },
+    "./dist/react-query": {
+      "import": "./dist/react-query.es.js",
+      "require": "./dist/react-query.cjs.js",
+      "types": "./dist/react-query.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && LIB_NAME=api-contract-kit vite build && LIB_NAME=server vite build && LIB_NAME=client vite build && LIB_NAME=react-query vite build && LIB_NAME=export-open-api vite build",
+    "test": "vitest run",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "5.59.20",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^10.1.0",
+    "vitest": "^2.1.8",
+    "typescript": "5.6.2",
+    "vite": "5.4.10",
+    "vite-plugin-node-polyfills": "0.22.0"
+  },
+  "dependencies": {
+    "@asteasolutions/zod-to-openapi": "7.2.0",
+    "@types/node": "22.9.0",
+    "vite-plugin-dts": "4.3.0",
+    "zod": "3.22.4"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/react-query": {
+      "optional": true
+    }
+  },
+  "bin": {
+    "export-open-api": "dist/open-api.cjs.js"
+  }
+}

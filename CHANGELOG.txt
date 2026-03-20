@@ -1,0 +1,114 @@
+CHANGELOG
+
+Date: 2026-03-20
+Scope: Framework-agnostic server/client refactor, optional React Query adapter, OpenAPI CLI improvements
+
+1) Core Type System Refactor
+- Reworked API type contracts to be framework-agnostic and Fetch-oriented.
+- Added shared DTO utility type in the core type file.
+- Added AuthResult and ErrorMapper contracts for configurable auth/error handling.
+- Added ApiCodec abstraction to support extensible request/response encoding/decoding.
+- Added OpenApiOperation metadata type for richer OpenAPI operation-level configuration.
+- Extended ServerFnDefinition with:
+  - path support (alongside endpoint)
+  - codec
+  - auth(request)
+  - errorMapper
+  - openapi metadata
+  - signal support in APIConsumerPayload
+
+Files:
+- src/types.ts
+
+2) API Definition Normalization
+- Updated createAPIDefinition to normalize path/endpoint values.
+- Added default JSON codec assignment.
+- Changed behavior to always attach apiConfig metadata from definition data.
+
+Files:
+- src/next-api-generator.ts
+
+3) Server Wrapper Re-architecture
+- Rebuilt apiWrapper around Web Fetch Request/Response.
+- Added stage-based error mapping with improved defaults:
+  - URL/query validation mapped as client errors
+  - payload validation mapped as 422 by default
+  - auth/handler failures mapped through error mapper
+- Added response encoding via codec.
+- Preserved output validation against response schema unless skipOutputValidation is enabled.
+
+Files:
+- src/server.ts
+
+4) Framework Adapters Added
+- Added first-party adapters:
+  - nextAdapter
+  - expressAdapter
+  - fastifyAdapter
+  - honoAdapter
+  - nestAdapter (via expressAdapter)
+- Implemented Node request -> Fetch Request conversion utilities.
+- Implemented Fetch Response -> Node response writing utilities.
+
+Files:
+- src/server.ts
+
+5) Client Layer Decoupled from React Query
+- Replaced React Query-coupled core with framework-agnostic client:
+  - createClient(config)
+  - apiConsumer(definition, config?)
+- Added support for headersProvider and request abort signal.
+- Added runtime fallback for NEXT_PUBLIC_BASE_API_URL.
+
+Files:
+- src/client.ts
+
+6) Optional React Query Adapter Module
+- Introduced separate adapter entrypoint:
+  - createReactQueryAdapter(config)
+  - useApiQuery(...)
+  - useApiMutation(...)
+- Kept React Query integration optional and isolated from core client runtime.
+
+Files:
+- src/react-query.ts
+
+7) OpenAPI Metadata + CLI Improvements
+- Enhanced setOpenAPIMetadata to support:
+  - operation summary/description/tags/operationId/deprecated/security
+  - custom responses and content types
+  - configurable API path prefix
+- Updated OpenAPI export script to:
+  - reuse existing apiConfig when present
+  - generate metadata on the fly when missing
+  - support configurable path prefix argument
+
+Files:
+- src/utils.ts
+- src/open-api/index.ts
+
+8) Build and Package Configuration Updates
+- Added new export for ./dist/react-query.
+- Fixed CJS export targets to use *.cjs.js files.
+- Updated build script to include:
+  - react-query bundle
+  - export-open-api bundle
+- Set OpenAPI CLI bin target to dist/open-api.cjs.js.
+- Moved @tanstack/react-query to dev dependency + optional peer dependency metadata.
+
+Files:
+- package.json
+- vite.config.ts
+
+9) TypeScript Project Configuration
+- Simplified include to src.
+- Enabled Node typing through compiler options for build/runtime scripts.
+
+Files:
+- tsconfig.json
+
+10) Validation and Build Outcomes
+- npm install: successful.
+- npm run build: successful after refactor updates.
+- npm run lint: currently fails in this repository because eslint binary/config is missing in the environment.
+
