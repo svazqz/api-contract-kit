@@ -1,12 +1,30 @@
 # api-contract-kit
 
+Define your API once, generate OpenAPI docs automatically, and keep server + client perfectly in sync.
+
+If this project saves you time, consider giving it a star on GitHub and supporting maintenance with a donation.
+
+- Demo project: [api-contract-kit-demo](https://github.com/svazqz/api-contract-kit-demo)
+- Star the project: [github.com/svazqz/api-contract-kit](https://github.com/svazqz/api-contract-kit)
+- Contribute: [ko-fi.com/svazqz](https://ko-fi.com/svazqz)
+
+## Why teams adopt it fast
+
+- **Automated API docs by default** from the same endpoint contracts used at runtime.
+- **No contract drift** between handlers, consumers, validation, and OpenAPI output.
+- **Framework-agnostic core** with adapters for Next.js, Express, Fastify, Hono, and Nest-style flows.
+- **Type-safe runtime validation** using Zod for params, query, payload, and response.
+- **CI-friendly OpenAPI export** for static docs hosting and artifact publishing.
+
+## At a glance
+
 `api-contract-kit` is a TypeScript-first library for defining HTTP APIs once and reusing that definition across:
 
 - server handlers
 - client consumers
 - OpenAPI generation
 
-The library is now framework-agnostic at its core, with adapter layers for multiple server frameworks.
+The core runtime is Fetch-based and framework-agnostic, with adapter layers for multiple server frameworks.
 
 ## Migration Notice
 
@@ -443,6 +461,7 @@ The library now supports a modular architecture with:
 - optional React Query integration
 - OpenAPI automation designed for CI/CD pipelines
 
-## Donate
+## Contribute
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BTJPCXNPH43YC)
+- GitHub Sponsors: [github.com/sponsors/svazqz](https://github.com/sponsors/svazqz)
+- Ko-fi: [ko-fi.com/svazqz](https://ko-fi.com/svazqz)
