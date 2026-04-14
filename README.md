@@ -2,11 +2,7 @@
 
 Define your API once, generate OpenAPI docs automatically, and keep server + client perfectly in sync.
 
-If this project saves you time, consider giving it a star on GitHub and supporting maintenance with a donation.
-
-- Demo project: [api-contract-kit-demo](https://github.com/svazqz/api-contract-kit-demo)
-- Star the project: [github.com/svazqz/api-contract-kit](https://github.com/svazqz/api-contract-kit)
-- Contribute: [ko-fi.com/svazqz](https://ko-fi.com/svazqz)
+Demo project: [api-contract-kit-demo](https://github.com/svazqz/api-contract-kit-demo)
 
 ## Why teams adopt it fast
 
@@ -463,5 +459,6 @@ The library now supports a modular architecture with:
 
 ## Contribute
 
-- GitHub Sponsors: [github.com/sponsors/svazqz](https://github.com/sponsors/svazqz)
-- Ko-fi: [ko-fi.com/svazqz](https://ko-fi.com/svazqz)
+If this project saves you time, consider giving it a star on GitHub and supporting maintenance with a donation.
+- Star the project: [github.com/svazqz/api-contract-kit](https://github.com/svazqz/api-contract-kit)
+- Contribute: [ko-fi.com/svazqz](https://ko-fi.com/svazqz)
