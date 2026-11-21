@@ -2,7 +2,7 @@
 
 Define HTTP endpoints once with Zod. Reuse the same contract for server-side validation, typed clients, and OpenAPI output.
 
-[![Latest release](https://img.shields.io/github/v/release/svazqz/api-contract-kit?label=release)](https://github.com/svazqz/api-contract-kit/releases/latest) [![npm publish workflow](https://github.com/svazqz/api-contract-kit/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/svazqz/api-contract-kit/actions/workflows/npm-publish.yml)
+[![Latest release](https://img.shields.io/github/v/release/svazqz/api-contract-kit?label=release)](https://github.com/svazqz/api-contract-kit/releases/latest) [![npm publish workflow](https://github.com/svazqz/api-contract-kit/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/svazqz/api-contract-kit/actions/workflows/npm-publish.yml) [![Validation](https://github.com/svazqz/api-contract-kit/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/svazqz/api-contract-kit/actions/workflows/ci.yml)
 
 [Quick start](#quick-start) · [Validation](#validation) · [Project layout](#project-layout) · [Reference](#reference) · [License](#license)
 
