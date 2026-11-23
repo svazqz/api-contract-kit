@@ -27,3 +27,28 @@ describe('createAPIDefinition', () => {
     expect(def.endpoint).toBe('');
   });
 });
+
+it('includes request bodies, path parameters, and codec media types in OpenAPI', async () => {
+  const { extendZodWithOpenApi } = await import('@asteasolutions/zod-to-openapi');
+  extendZodWithOpenApi(z);
+  const payload = z.object({ message: z.string() });
+  const urlArgs = z.object({ id: z.string() });
+  const codec = { ...jsonCodec, requestContentType: 'application/vnd.contract+json' };
+
+  const def = createAPIDefinition({
+    method: 'post',
+    path: 'messages/{id}',
+    codec,
+    schemas: { payload, urlArgs },
+  });
+
+  expect(def).toMatchObject({
+    apiConfig: {
+      path: '/api/messages/{id}',
+      request: {
+        params: expect.objectContaining({ safeParse: expect.any(Function) }),
+        body: { required: true, content: { [codec.requestContentType]: { schema: payload } } },
+      },
+    },
+  });
+});
