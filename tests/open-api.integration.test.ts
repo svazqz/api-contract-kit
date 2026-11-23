@@ -55,3 +55,37 @@ describe('open-api cli integration', () => {
     }
   });
 });
+
+it('writes and reads the published OpenAPI document with default paths', async () => {
+  const { mkdtempSync, readFileSync, rmSync, writeFileSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const directory = mkdtempSync(path.join(tmpdir(), 'contract-kit-'));
+  const stdout = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+  try {
+    writeFileSync(path.join(directory, 'definitions.cjs'), `
+      module.exports = {
+        api: { health: {
+          apiConfig: {
+            method: 'get',
+            path: '/api/health',
+            responses: { 200: { description: 'Healthy' } }
+          }
+        } }
+      };
+    `);
+    const generated = runOpenApiCli(['node', 'open-api', '--', 'definitions.cjs'], {
+      baseDir: directory,
+    });
+    const written = JSON.parse(readFileSync(path.join(directory, 'dist/apps/openapi/docs.json'), 'utf8'));
+    expect(written).toEqual(generated);
+    expect(written.paths['/api/health'].get.responses['200'].description).toBe('Healthy');
+  } finally {
+    stdout.mockRestore();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+it('requires a definitions file on the command line', () => {
+  expect(() => runOpenApiCli(['node', 'open-api'])).toThrow('specify the index file');
+});

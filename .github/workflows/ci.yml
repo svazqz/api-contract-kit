@@ -22,16 +22,10 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - name: "Set up Node.js"
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
-        with:
-          node-version: "22"
-          package-manager-cache: false
-          cache: "npm"
-      - name: "Install locked dependencies"
-        run: "npm ci"
-      - name: "Validate"
+      - name: "Run library tests and coverage in Docker"
+        shell: bash
         run: |
-          npm test
-          npm run lint
-          npm run build
+          set -o pipefail
+          docker run --rm --init \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/src,readonly" \
+            node:22-bookworm-slim sh /src/tests/run-container-tests.sh | tee -a "$GITHUB_STEP_SUMMARY"

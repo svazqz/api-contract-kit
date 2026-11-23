@@ -18,6 +18,14 @@ Define an endpoint with `createAPIDefinition`, then connect a server adapter and
 
 ## Validation
 
+The Vitest unit suite enforces 95% line coverage of the library runtime. The OpenAPI export integration suite enforces 90% line coverage of the exporter.
+
+```sh
+docker run --rm --init \
+  --mount "type=bind,source=$PWD,target=/src,readonly" \
+  node:22-bookworm-slim sh /src/tests/run-container-tests.sh
+```
+
 ```sh
 npm ci
 npm test
