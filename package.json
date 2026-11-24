@@ -79,5 +79,6 @@
   },
   "bin": {
     "export-open-api": "dist/open-api.cjs.js"
-  }
+  },
+  "license": "MIT"
 }
